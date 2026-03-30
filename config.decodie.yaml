@@ -1,0 +1,17 @@
+#ddev-generated
+# DDEV configuration for Decodie
+# Subdomain routing is handled by $HOME/.ddev/traefik/custom-global-config/decodie-<projectname>.yaml
+
+hooks:
+  post-start:
+    - exec: |
+        #ddev-description: Install Decodie UI
+        if [ ! -d "/var/www/html/.ddev/decodie/node_modules" ]; then
+          cd /var/www/html/.ddev/decodie
+          npm install --silent 2>/dev/null
+        fi
+
+web_extra_daemons:
+  - name: decodie
+    command: /var/www/html/.ddev/scripts/decodie-daemon.sh
+    directory: /var/www/html

@@ -1,0 +1,49 @@
+name: decodie
+
+project_files:
+  - config.decodie.yaml
+  - scripts/decodie-daemon.sh
+  - scripts/decodie-gen-traefik.sh
+  - scripts/decodie-append-hostnames.sh
+  - decodie/.env.example
+  - decodie/.gitignore
+
+global_files:
+  - commands/host/decodie
+
+pre_install_actions:
+  - echo "Installing Decodie DDEV add-on..."
+  - chmod +x scripts/decodie-daemon.sh
+  - chmod +x scripts/decodie-gen-traefik.sh
+  - chmod +x scripts/decodie-append-hostnames.sh
+
+post_install_actions:
+  - bash scripts/decodie-gen-traefik.sh
+  - bash scripts/decodie-append-hostnames.sh
+  - |
+    # Create .env from example if it doesn't exist
+    if [ ! -f decodie/.env ]; then
+      cp decodie/.env.example decodie/.env
+    fi
+  - |
+    # Copy the UI source into .ddev/decodie/ if not already present
+    if [ ! -d "decodie/src" ]; then
+      echo "Setting up Decodie UI..."
+      mkdir -p decodie
+      # TODO: Replace with npm install @owenbush/decodie-ui when published
+      echo "Please copy the decodie-ui source into .ddev/decodie/"
+    fi
+  - |
+    echo ""
+    echo "Decodie installed!"
+    echo ""
+    echo "Next steps:"
+    echo "  1. For Q&A support, edit .ddev/decodie/.env and set CLAUDE_CODE_OAUTH_TOKEN"
+    echo "     Get your token by running: claude setup-token"
+    echo "  2. ddev restart"
+    echo "  3. Open https://decodie.${DDEV_SITENAME}.ddev.site"
+    echo ""
+
+removal_actions:
+  - rm -f "$HOME/.ddev/traefik/custom-global-config/decodie-${DDEV_SITENAME}.yaml"
+  - rm -rf .ddev/learning

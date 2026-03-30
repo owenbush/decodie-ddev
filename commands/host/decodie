@@ -1,0 +1,39 @@
+#!/bin/bash
+
+## Description: Open or manage the Decodie
+## Usage: decodie [subcommand]
+## Example: ddev decodie\n## ddev decodie status\n## ddev decodie cleanup
+
+URL="https://decodie.${DDEV_SITENAME}.ddev.site"
+
+case "${1:-open}" in
+  open)
+    open "$URL" 2>/dev/null || xdg-open "$URL" 2>/dev/null || echo "Open $URL in your browser"
+    ;;
+  status)
+    ddev exec curl -s http://localhost:8081/api/status 2>/dev/null | python3 -m json.tool 2>/dev/null || echo "Decodie is not running. Try 'ddev restart'."
+    ;;
+  cleanup)
+    open "$URL#/review" 2>/dev/null || xdg-open "$URL#/review" 2>/dev/null || echo "Open $URL#/review in your browser"
+    ;;
+  settings)
+    open "$URL#/settings" 2>/dev/null || xdg-open "$URL#/settings" 2>/dev/null || echo "Open $URL#/settings in your browser"
+    ;;
+  help|--help|-h)
+    echo "Usage: ddev decodie [command]"
+    echo ""
+    echo "Commands:"
+    echo "  open       Open the Decodie in your browser (default)"
+    echo "  status     Show learning entry statistics"
+    echo "  cleanup    Open the archival review page"
+    echo "  settings   Open Q&A settings"
+    echo "  help       Show this help message"
+    echo ""
+    echo "URL: $URL"
+    ;;
+  *)
+    echo "Unknown command: $1"
+    echo "Run 'ddev decodie help' for usage information."
+    exit 1
+    ;;
+esac
