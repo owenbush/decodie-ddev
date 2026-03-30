@@ -26,13 +26,13 @@ post_install_actions:
       cp decodie/.env.example decodie/.env
     fi
   - |
-    # Copy the UI source into .ddev/decodie/ if not already present
-    if [ ! -d "decodie/src" ]; then
-      echo "Setting up Decodie UI..."
-      mkdir -p decodie
-      # TODO: Replace with npm install @owenbush/decodie-ui when published
-      echo "Please copy the decodie-ui source into .ddev/decodie/"
+    # Install the Decodie UI npm package
+    echo "Installing @owenbush/decodie-ui..."
+    cd decodie
+    if [ ! -f package.json ]; then
+      echo '{"private":true}' > package.json
     fi
+    npm install @owenbush/decodie-ui --save --silent 2>/dev/null
   - |
     echo ""
     echo "Decodie installed!"
@@ -46,4 +46,4 @@ post_install_actions:
 
 removal_actions:
   - rm -f "$HOME/.ddev/traefik/custom-global-config/decodie-${DDEV_SITENAME}.yaml"
-  - rm -rf .ddev/learning
+  - rm -rf .ddev/decodie/node_modules

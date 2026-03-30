@@ -9,4 +9,4 @@ if [ -f /var/www/html/.ddev/decodie/.env ]; then
 fi
 
 cd /var/www/html/.ddev/decodie
-exec npx tsx src/cli.ts serve --port 8081 --dir /var/www/html
+exec npx @owenbush/decodie-ui serve --port 8081 --dir /var/www/html --no-open

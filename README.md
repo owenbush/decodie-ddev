@@ -50,7 +50,14 @@ The Q&A feature requires authentication with Claude. Edit `.ddev/decodie/.env` a
 
 ## How It Works
 
-The add-on runs the Decodie UI as a daemon inside the DDEV web container and uses Traefik for subdomain routing. No separate container is needed.
+The add-on installs [`@owenbush/decodie-ui`](https://www.npmjs.com/package/@owenbush/decodie-ui) from npm and runs it as a daemon inside the DDEV web container. Traefik handles subdomain routing. No separate container is needed.
+
+To update to the latest version of the UI:
+
+```bash
+ddev exec "cd /var/www/html/.ddev/decodie && npm update @owenbush/decodie-ui"
+ddev restart
+```
 
 ## Related Repositories
 
