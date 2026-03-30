@@ -13,9 +13,14 @@ A DDEV add-on that integrates the Decodie learning companion into your local dev
 ```bash
 ddev add-on get owenbush/decodie-ddev
 ddev restart
+ddev decodie
 ```
 
-The UI will be available at `https://decodie.SITENAME.ddev.site` (where SITENAME is your DDEV project name).
+This installs everything you need:
+- The Decodie UI (via npm)
+- The Decodie skill for Claude Code (into `~/.claude/skills/decodie/`)
+
+The UI will be available at `https://decodie.SITENAME.ddev.site` (where SITENAME is your DDEV project name). Just code with Claude Code and your learning entries will appear automatically.
 
 ## Usage
 
