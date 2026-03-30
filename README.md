@@ -20,7 +20,9 @@ This installs everything you need:
 - The Decodie UI (via npm)
 - The Decodie skill for Claude Code (into `~/.claude/skills/decodie/`)
 
-The UI will be available at `https://decodie.SITENAME.ddev.site` (where SITENAME is your DDEV project name). Just code with Claude Code and your learning entries will appear automatically.
+The UI will be available at `https://decodie.SITENAME.ddev.site` (where SITENAME is your DDEV project name).
+
+To start generating learning entries, activate the skill in Claude Code by running `/decodie` at the start of your session. Entries will appear automatically as you code.
 
 ## Usage
 
