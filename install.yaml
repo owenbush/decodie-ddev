@@ -34,6 +34,11 @@ post_install_actions:
     fi
     npm install @owenbush/decodie-ui --save --silent 2>/dev/null
   - |
+    # Install the Decodie skill for Claude Code
+    echo "Installing Decodie skill for Claude Code..."
+    cd decodie
+    npx @owenbush/decodie-ui install-skill 2>/dev/null
+  - |
     echo ""
     echo "Decodie installed!"
     echo ""
@@ -41,7 +46,7 @@ post_install_actions:
     echo "  1. For Q&A support, edit .ddev/decodie/.env and set CLAUDE_CODE_OAUTH_TOKEN"
     echo "     Get your token by running: claude setup-token"
     echo "  2. ddev restart"
-    echo "  3. Open https://decodie.${DDEV_SITENAME}.ddev.site"
+    echo "  3. Run: ddev decodie"
     echo ""
 
 removal_actions:
