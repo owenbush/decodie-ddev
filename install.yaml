@@ -13,11 +13,11 @@ global_files:
 
 pre_install_actions:
   - echo "Installing Decodie DDEV add-on..."
+
+post_install_actions:
   - chmod +x scripts/decodie-daemon.sh
   - chmod +x scripts/decodie-gen-traefik.sh
   - chmod +x scripts/decodie-append-hostnames.sh
-
-post_install_actions:
   - bash scripts/decodie-gen-traefik.sh
   - bash scripts/decodie-append-hostnames.sh
   - |
