@@ -34,8 +34,8 @@ post_install_actions:
     fi
     npm install @owenbush/decodie-ui --save --silent 2>/dev/null
   - |
-    # Install the Decodie skill for Claude Code
-    echo "Installing Decodie skill for Claude Code..."
+    # Install the Decodie commands for Claude Code
+    echo "Installing Decodie commands for Claude Code..."
     cd decodie
     npx @owenbush/decodie-ui install-skill 2>/dev/null
   - |
