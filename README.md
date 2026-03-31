@@ -18,11 +18,11 @@ ddev decodie
 
 This installs everything you need:
 - The Decodie UI (via npm)
-- The Decodie skills for Claude Code — `/decodie` and `/decodie-analyze` (into `~/.claude/skills/decodie/`)
+- The Decodie commands for Claude Code (into `~/.claude/commands/decodie/`)
 
 The UI will be available at `https://decodie.SITENAME.ddev.site` (where SITENAME is your DDEV project name).
 
-To start generating learning entries, run `/decodie` in Claude Code at the start of your session. Entries will appear automatically as you code. You can also run `/decodie-analyze src/` to generate entries from existing code.
+To start generating learning entries, run `/decodie:observe` in Claude Code at the start of your session. You can also run `/decodie:analyze src/` to generate entries from existing code, or `/decodie:ask "question"` to query your entries.
 
 ## Usage
 
@@ -70,4 +70,4 @@ ddev restart
 
 - [owenbush/decodie](https://github.com/owenbush/decodie) -- Main Decodie site
 - [owenbush/decodie-ui](https://github.com/owenbush/decodie-ui) -- The learning companion UI
-- [owenbush/decodie-skill](https://github.com/owenbush/decodie-skill) -- Claude Code skill for generating learning entries
+- [owenbush/decodie-skill](https://github.com/owenbush/decodie-skill) -- Claude Code commands for generating and analyzing learning entries
