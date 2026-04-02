@@ -71,3 +71,5 @@ ddev restart
 - [owenbush/decodie](https://github.com/owenbush/decodie) -- Main Decodie site
 - [owenbush/decodie-ui](https://github.com/owenbush/decodie-ui) -- The learning companion UI
 - [owenbush/decodie-skill](https://github.com/owenbush/decodie-skill) -- Claude Code commands for generating and analyzing learning entries
+- [owenbush/decodie-vscode](https://github.com/owenbush/decodie-vscode) -- VSCode extension with sidebar entry browser and right-click analysis
+- [owenbush/decodie-core](https://github.com/owenbush/decodie-core) -- Shared data layer (types, parser, reference resolver)
