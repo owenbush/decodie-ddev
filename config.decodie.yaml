@@ -6,13 +6,11 @@ hooks:
   post-start:
     - exec: |
         #ddev-description: Install Decodie UI
-        if [ ! -d "/var/www/html/.ddev/decodie/node_modules/@owenbush/decodie-ui" ]; then
-          cd /var/www/html/.ddev/decodie
-          if [ ! -f package.json ]; then
-            echo '{"private":true}' > package.json
-          fi
-          npm install @owenbush/decodie-ui --save --silent 2>/dev/null
+        cd /var/www/html/.ddev/decodie
+        if [ ! -f package.json ]; then
+          echo '{"private":true}' > package.json
         fi
+        npm install @owenbush/decodie-ui@latest --save --silent 2>/dev/null
 
 web_extra_daemons:
   - name: decodie

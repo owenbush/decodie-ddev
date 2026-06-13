@@ -32,12 +32,11 @@ post_install_actions:
     if [ ! -f package.json ]; then
       echo '{"private":true}' > package.json
     fi
-    npm install @owenbush/decodie-ui --save --silent 2>/dev/null
+    npm install @owenbush/decodie-ui@latest --save --silent 2>/dev/null
   - |
-    # Install the Decodie commands for Claude Code
-    echo "Installing Decodie commands for Claude Code..."
-    cd decodie
-    npx @owenbush/decodie-ui install-skill 2>/dev/null
+    # Install Decodie skills for AI coding agents
+    echo "Installing Decodie skills..."
+    npx -y skills add owenbush/decodie-skill --all 2>/dev/null
   - |
     echo ""
     echo "Decodie installed!"
