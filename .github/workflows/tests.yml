@@ -18,17 +18,11 @@ defaults:
 
 jobs:
   tests:
-    strategy:
-      matrix:
-        ddev_version: [latest, HEAD]
-      fail-fast: false
-
     runs-on: ubuntu-latest
 
     steps:
       - uses: ddev/github-action-setup-ddev@v1
         with:
-          version: ${{ matrix.ddev_version }}
           autostart: false
 
       - uses: actions/checkout@v4
