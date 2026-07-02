@@ -36,7 +36,7 @@ post_install_actions:
   - |
     # Install Decodie skills for AI coding agents
     echo "Installing Decodie skills..."
-    npx -y skills add owenbush/decodie-skill --all 2>/dev/null
+    npx -y skills add owenbush/decodie-skill --all -g 2>/dev/null
   - |
     echo ""
     echo "Decodie installed!"
