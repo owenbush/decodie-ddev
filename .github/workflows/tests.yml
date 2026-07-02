@@ -1,0 +1,72 @@
+name: tests
+on:
+  schedule:
+    - cron: '25 08 * * *'
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  tests:
+    strategy:
+      matrix:
+        ddev_version: [stable, HEAD]
+      fail-fast: false
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: ddev/github-action-setup-ddev@v1
+        with:
+          ddev-version: ${{ matrix.ddev_version }}
+
+      - uses: actions/checkout@v4
+
+      - name: Install bats
+        run: sudo apt-get install -y bats
+
+      - name: Run structural tests
+        run: bats tests/test.bats
+
+      - name: Integration test — install addon
+        run: |
+          mkdir -p /tmp/test-project && cd /tmp/test-project
+          ddev config --project-name=test-decodie --project-type=drupal
+          ddev add-on get "$GITHUB_WORKSPACE"
+          ddev start
+
+      - name: Integration test — verify addon files
+        run: |
+          cd /tmp/test-project
+          [ -f .ddev/config.decodie.yaml ]
+          [ -f .ddev/decodie/.env.example ]
+          [ -x .ddev/scripts/decodie-daemon.sh ]
+          grep -q "web_extra_daemons" .ddev/config.decodie.yaml
+          grep -q "decodie.test-decodie" .ddev/config.decodie.yaml
+
+      - name: Integration test — decodie UI is running
+        run: |
+          cd /tmp/test-project
+          sleep 5
+          ddev exec curl -s -o /dev/null -w '%{http_code}' http://localhost:8081 | grep -q '200'
+
+      - name: Integration test — traefik routing
+        run: |
+          cd /tmp/test-project
+          [ -f "$HOME/.ddev/traefik/custom-global-config/decodie-test-decodie.yaml" ]
+          grep -q "decodie.test-decodie.ddev.site" "$HOME/.ddev/traefik/custom-global-config/decodie-test-decodie.yaml"
+
+      - name: Cleanup
+        if: always()
+        run: |
+          cd /tmp/test-project 2>/dev/null && ddev delete -Oy 2>/dev/null || true
