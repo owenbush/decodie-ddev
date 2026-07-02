@@ -20,7 +20,7 @@ jobs:
   tests:
     strategy:
       matrix:
-        ddev_version: [stable, HEAD]
+        ddev_version: [latest, HEAD]
       fail-fast: false
 
     runs-on: ubuntu-latest
@@ -28,7 +28,8 @@ jobs:
     steps:
       - uses: ddev/github-action-setup-ddev@v1
         with:
-          ddev-version: ${{ matrix.ddev_version }}
+          version: ${{ matrix.ddev_version }}
+          autostart: false
 
       - uses: actions/checkout@v4
 
@@ -40,7 +41,8 @@ jobs:
 
       - name: Integration test — install addon
         run: |
-          mkdir -p /tmp/test-project && cd /tmp/test-project
+          mkdir -p /tmp/test-project
+          cd /tmp/test-project
           ddev config --project-name=test-decodie --project-type=drupal
           ddev add-on get "$GITHUB_WORKSPACE"
           ddev start
