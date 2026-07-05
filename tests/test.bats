@@ -61,11 +61,11 @@ teardown() {
   assert_file_exist .ddev/config.decodie.yaml
   assert_file_exist .ddev/decodie/.env.example
   assert_file_exist .ddev/scripts/decodie-daemon.sh
-  assert_file_permission --is-executable .ddev/scripts/decodie-daemon.sh
+  assert_file_executable .ddev/scripts/decodie-daemon.sh
   assert_file_exist .ddev/scripts/decodie-gen-traefik.sh
-  assert_file_permission --is-executable .ddev/scripts/decodie-gen-traefik.sh
+  assert_file_executable .ddev/scripts/decodie-gen-traefik.sh
   assert_file_exist .ddev/scripts/decodie-append-hostnames.sh
-  assert_file_permission --is-executable .ddev/scripts/decodie-append-hostnames.sh
+  assert_file_executable .ddev/scripts/decodie-append-hostnames.sh
 }
 
 @test "traefik config is generated" {
