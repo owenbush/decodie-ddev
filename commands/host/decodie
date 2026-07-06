@@ -1,4 +1,5 @@
 #!/bin/bash
+#ddev-generated
 
 ## Description: Open or manage the Decodie
 ## Usage: decodie [subcommand]
