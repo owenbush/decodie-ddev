@@ -1,4 +1,5 @@
 #!/bin/bash
+#ddev-generated
 # Starts the Decodie UI server as a DDEV daemon
 
 # Load env vars (e.g. CLAUDE_API_KEY) if .env exists

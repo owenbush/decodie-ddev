@@ -1,4 +1,5 @@
 #!/bin/bash
+#ddev-generated
 # Appends additional_hostnames to config.decodie.yaml for DNS resolution.
 # Requires: DDEV_SITENAME env var
 

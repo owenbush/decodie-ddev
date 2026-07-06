@@ -1,4 +1,5 @@
 #!/bin/bash
+#ddev-generated
 # Generates Traefik routing config for the decodie subdomain.
 # Routes https://decodie.SITENAME.ddev.site to Decodie on port 8081
 

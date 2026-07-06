@@ -2,17 +2,16 @@ name: decodie
 
 project_files:
   - config.decodie.yaml
+  - commands/host/decodie
   - scripts/decodie-daemon.sh
   - scripts/decodie-gen-traefik.sh
   - scripts/decodie-append-hostnames.sh
   - decodie/.env.example
   - decodie/.gitignore
 
-global_files:
-  - commands/host/decodie
-
 pre_install_actions:
   - echo "Installing Decodie DDEV add-on..."
+  - rm -f "$HOME/.ddev/commands/host/decodie"
 
 post_install_actions:
   - chmod +x scripts/decodie-daemon.sh
