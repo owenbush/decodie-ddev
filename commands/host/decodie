@@ -11,22 +11,22 @@ case "${1:-open}" in
     open "$URL" 2>/dev/null || xdg-open "$URL" 2>/dev/null || echo "Open $URL in your browser"
     ;;
   status)
-    ddev exec curl -s http://localhost:8081/api/status 2>/dev/null | python3 -m json.tool 2>/dev/null || echo "Decodie is not running. Try 'ddev restart'."
-    ;;
-  cleanup)
-    open "$URL#/review" 2>/dev/null || xdg-open "$URL#/review" 2>/dev/null || echo "Open $URL#/review in your browser"
+    ddev exec curl -s http://localhost:8081/api/config/status 2>/dev/null | python3 -m json.tool 2>/dev/null || echo "Decodie is not running. Try 'ddev restart'."
     ;;
   settings)
     open "$URL#/settings" 2>/dev/null || xdg-open "$URL#/settings" 2>/dev/null || echo "Open $URL#/settings in your browser"
+    ;;
+  lessons)
+    open "$URL#/lessons" 2>/dev/null || xdg-open "$URL#/lessons" 2>/dev/null || echo "Open $URL#/lessons in your browser"
     ;;
   help|--help|-h)
     echo "Usage: ddev decodie [command]"
     echo ""
     echo "Commands:"
-    echo "  open       Open the Decodie in your browser (default)"
+    echo "  open       Open Decodie in your browser (default)"
     echo "  status     Show learning entry statistics"
-    echo "  cleanup    Open the archival review page"
-    echo "  settings   Open Q&A settings"
+    echo "  settings   Open settings page"
+    echo "  lessons    Open lessons page"
     echo "  help       Show this help message"
     echo ""
     echo "URL: $URL"
